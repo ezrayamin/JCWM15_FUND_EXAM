@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>soal 1</title>
+</head>
+<body>
+    <h1>PATTERN</h1>
+    <input type="text" id="inputAngka" placeholder="masukan angka">
+    <br>
+    <button onclick="ClickGanjil()">GANJIL</button>
+    <button onclick="ClickGenap()">HURUF</button>
+    <br>
+    <h1>RESULT:<br></h1>
+    <p1 id="result"></p1>
+</body>
+<script>
+    let input = document.getElementById("inputAngka")
+    console.log(input)
+    console.log(input.value)
+
+    function ClickGanjil() {
+        console.log("ganjil clicked")
+        let inputNum = parseInt(input.value)
+        let pattern = document.getElementById("result")
+        let patternGambar = 1
+        for (let i=1; i<=inputNum; i++) {
+            for (let j=1; j <=i; j +=2 ) {
+                patternGambar += `${j}&nbsp`
+                }
+        }
+        patternGambar += "<br>"
+        pattern.innerHTML = patternGambar
+    }
+
+    function ClickHuruf() {
+        console.log("ganjil clicked")
+        let inputNum = parseInt(input.value)
+        let pattern = document.getElementById("result")
+        // let patternGambar = 1
+        for (let i=1; i<=inputNum; i++) {
+            for (let j=1; j <=i; j +=2 ) {
+                patternGambar += `${j}&nbsp`
+                }
+        }
+        patternGambar += "<br>"
+        pattern.innerHTML = patternGambar
+    }
+</script>
+</html>

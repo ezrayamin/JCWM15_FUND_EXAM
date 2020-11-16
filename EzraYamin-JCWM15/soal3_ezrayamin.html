@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>soal 3</title>
+</head>
+<body>
+    <h1>FORM USERS</h1>
+    <form id="users">
+        <input type="text" id="username" placeholder="username">
+        <input type="email" id="email" placeholder="email">
+        <select>
+            <option value="1">user</option>
+            <option value="2">admin</option>
+        </select>
+        <button onclick="ClickAdd(event)">ADD USERS</button>    
+    </form>
+    <h1>USERS DATA</h1>
+    <table id="tabelData">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+    </thead>
+    <tbody id="tbodyData"></tbody>
+    </table>
+</body>
+<script>
+    let isiTabelData = [
+        {
+            nu : 1,
+            dataUsername : "alee",
+            dataEmail : "alee@gmail.com"
+        },
+        {
+            nu : 2,
+            dataUsername : "jennie",
+            dataEmail : "jenniebp@gmail.com"
+        },
+        {
+            nu : 3,
+            dataUsername : "elsa",
+            dataEmail : "elsa@disney.com"
+        }
+    ]
+
+    let role = [
+        {option : "user"},
+        {option: "admin"}
+    ]
+    class NewData {
+        constructor(nu, dataUsername, dataEmail) {
+            this.nu = nu,
+            this.dataUsername = dataUsername,
+            this.dataEmail = dataEmail
+        }
+    }
+
+// FUNCTIONSSSSS
+function ShowData(para) {
+    console.log("parameter", para)
+    let table = document.getElementById("tabelData")
+    console.log(table)
+    let tbody = table.getElementsByTagName("tbody")[0]
+    console.log(tbody)
+    let user = selec[0].value
+    console.log(user)
+    let admin = select[1].value
+    console.log(value)
+
+    let tr = ""
+    for (let i =0; i < isiTabelData.length; i++) {
+        if (para === i) {
+            tr += `
+                <tr>
+                    <td>
+                        <input id="editUsename" type="text" value="${isiTabelData[i].dataUsername}">
+                    </td>
+                    <td>
+                        <input id="editEmail" type="text" value="${isiTabelData[i].dataEmail}">
+                    </td>
+                    <td>
+                        <select>
+                            <option value="1">user</option>
+                            <option value="2">admin</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button onclick="ClickSave(${i})">SAVE</button>
+                        <button onclick="ClickCancel()">CANCEL</button>
+                    </td>
+                </tr>
+            `
+        } else {
+        tr +=  `
+            <tr>
+                <td>${i + 1}</td>
+                <td>${isiTabelData[i].dataUsername}</td>
+                <td>${isiTabelData[i].dataEmail}</td>
+                <td>${role[i].user}</td>
+                 <td>
+                    <button onclick="ClickEdit(${i})">EDIT</button>
+                    <button onclick="ClickDelete(${i})">DELETE</button>
+                  </td>
+            </tr>
+            `
+        }
+    }
+    tbody.innerHTML = tr
+}
+ShowData()
+
+// ADD USER DATA
+function ClickAdd (event) {
+    event.preventDefault()
+    console.log("add button clicked")
+
+    let form = document.forms[0]
+    console.log(form)
+    console.log(form["username"].value)
+
+    let inputUsername = form["username"].value
+    let inputEmail = form["email"].value
+
+    if (inputUsername === "" || inputEmail === "") {
+        alert("masih ada input kosong") 
+    } else {
+        isiTabelData.push(new NewData(
+            isiTabelData.length + 1, 
+            form["username"].value,
+            form["email"].value
+        ))
+        console.log(isiTabelData)
+
+        ShowData()
+        form["username"].value = ""
+        form["email"].value = ""
+    }
+}
+
+// DELETE DATA
+function ClickDelete(para) {
+    console.log(`index ke ${para} deleted`)
+    isiTabelData.splice(para, 1)
+    ShowData()
+} 
+
+// EDIT DATA
+// Input
+function ClickEdit(para) {
+    console.log(`edit ${para} clicked`)
+    ShowData(para)
+}
+// Save Input
+function ClickSave(para) {
+    console.log("editing saved")
+
+    let valueEditUsername = document.getElementById("editUsername").value
+    let valueEditEmail = document.getElementById("editEmail").value
+    console.log(valueEditUsername)
+    console.log(valueEditEmail)
+
+    isiTabelData[para].dataUsername = valueEditUsername
+    isiTabelData[para].dataEmail = valueEditEmail
+    console.log(isiTabelData)
+
+    ShowData()
+}
+// Cancel Input
+function ClickCancel() {
+    console.log("editing canceled")
+    ShowData()
+}
+
+</script>
+</html>

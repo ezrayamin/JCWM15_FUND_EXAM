@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>soal 2</title>
+</head>
+<body>
+    <h1>DERET FIBONANCI</h1>
+    <div id="input">
+        <p>Masukkan angka : </p>
+        <input type="number" id="kolomInput" placeholder="masukan angka">
+        <button onclick="Show()">SHOW</button>
+        <button onclick="Ganjil()">GANJIL</button>
+        <button onclick="Genap()">GENAP</button>
+    </div>
+    <h1 id="result">RESULT</h1>
+</body>
+<script>
+    let input = document.getElementById("input")
+    console.log(input)
+    let kolomInput = document.getElementById("kolomInput")
+    console.log(kolomInput)
+    console.log(kolomInput.value)
+
+    function Show() {
+        console.log("show clicked")
+        let inputNum = parseInt(kolomInput.value)
+        let output = document.getElementById("result")
+
+        let initial = 0
+        let current = 1
+        console.log(initial)
+        console.log(current)
+
+        while (true) {
+            let tempor = current
+
+            current = current + initial
+            initial = tempor
+
+            if (current > inputNum) {
+                break
+            }
+            console.log(current)
+        }
+        output.innerHTML = current
+    }
+</script>
+</html>
